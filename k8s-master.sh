@@ -1,11 +1,12 @@
 #!/bin/bash
 kubeadm config images pull
-kubeadm init --apiserver-advertise-address=$(hostname -I | cut -d' ' -f2) --pod-network-cidr=172.28.128.0/24
+kubeadm init --apiserver-advertise-address=$(hostname -I | cut -d' ' -f2) --pod-network-cidr=10.244.0.0/16
 
 sudo --user=vagrant mkdir -p /home/vagrant/.kube
 cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 chown $(id -u vagrant):$(id -g vagrant) /home/vagrant/.kube/config
 
+rm -f /vagrant/config
 cp -i /etc/kubernetes/admin.conf /vagrant/config
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
