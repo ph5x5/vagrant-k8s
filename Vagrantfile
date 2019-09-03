@@ -6,7 +6,6 @@ Vagrant.configure("2") do |config|
     config.vm.define "k8s-master" do |node|
         config.vm.box = "ubuntu/bionic64"
         config.vm.network :private_network, type: "dhcp"
-        config.vm.network "forwarded_port", guest: 6443, host: 6443
         node.vm.hostname = "k8s-master"
         node.vm.provider "virtualbox" do |vb|
             vb.memory = "1024"
