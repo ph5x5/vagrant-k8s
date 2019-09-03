@@ -21,5 +21,3 @@ sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication
 sudo service sshd restart
 
 kubectl apply -f /vagrant/ingress/ingress.yaml
-
-iptables -t nat -A PREROUTING -p tcp --dport 6443 -j REDIRECT --to-port 6443
